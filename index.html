@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irmağım ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('irmak.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* İçeriği en üste hizalar */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+            text-align: center;
+            max-width: 100%;
+            margin-top: 0; /* Sayfanın en tepesine yapıştırır */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none; /* Üst çizgiyi kaldırdık ki tam sıfır dursun */
+            backdrop-filter: blur(2px);
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(16px, 4.5vw, 26px); /* Yazıyı biraz daha kibar yaptık */
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            font-weight: normal;
+        }
+
+        /* Kalp Efektleri */
+        .heart {
+            position: fixed;
+            top: -10%;
+            user-select: none;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <h1>Irmağım seni çok seviyorum bir tanemmm ❤️</h1>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const heartTypes = ['❤️', '💖', '💕', '💗'];
+            heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 10 + 15 + "px";
+            const duration = Math.random() * 3 + 2; 
+            heart.style.animation = `fall ${duration}s linear forwards`;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, duration * 1000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
